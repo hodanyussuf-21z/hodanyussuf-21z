@@ -1,0 +1,70 @@
+// Prompt the user to enter employee name, hours worked, and rate per hour
+let employeeName = prompt("Enter employee name:");
+let hoursWorked = parseInt(prompt("Enter hours worked:"));
+let ratePerHour = parseFloat(prompt("Enter rate per hour:"));
+
+// Calculate the basic pay
+let basicPay = hoursWorked * ratePerHour;
+
+// Calculate tax based on basic pay
+let tax;
+if (basicPay > 50000) {
+    tax = 0.2 * basicPay;
+} else if (basicPay >= 20000 && basicPay <= 50000) {
+    tax = 0.1 * basicPay;
+} else {
+    tax = 0;
+}
+
+// Calculate net pay
+let netPay = basicPay - tax;
+
+// Display the results
+console.log("Employee Name: " + employeeName);
+console.log("Basic Pay: $" + basicPay);
+console.log("Tax: $" + tax);
+console.log("Net Pay: $" + netPay);<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Pay Calculator</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Employee Pay Calculator</h1>
+    <label for="employeeName">Employee Name:</label>
+    <input type="text" id="employeeName"><br>
+    <label for="hoursWorked">Hours Worked:</label>
+    <input type="number" id="hoursWorked"><br>
+    <label for="ratePerHour">Rate Per Hour:</label>
+    <input type="number" step="0.01" id="ratePerHour"><br>
+    <button onclick="calculatePay()">Calculate Pay</button><br>
+    <div id="results"></div>
+
+    <script>
+        function calculatePay() {
+            let employeeName = document.getElementById("employeeName").value;
+            let hoursWorked = parseFloat(document.getElementById("hoursWorked").value);
+            let ratePerHour = parseFloat(document.getElementById("ratePerHour").value);
+
+            let basicPay = hoursWorked * ratePerHour;
+            let tax;
+            if (basicPay > 50000) {
+                tax = 0.2 * basicPay;
+            } else if (basicPay >= 20000 && basicPay <= 50000) {
+                tax = 0.1 * basicPay;
+            } else {
+                tax = 0;
+            }
+
+            let netPay = basicPay - tax;
+
+            document.getElementById("results").innerHTML = "<p>Employee Name: " + employeeName + "</p>" +
+                "<p>Basic Pay: $" + basicPay + "</p>" +
+                "<p>Tax: $" + tax + "</p>" +
+                "<p>Net Pay: $" + netPay + "</p>";
+        }
+    </script>
+</body>
+</html>
